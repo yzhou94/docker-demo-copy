@@ -24,7 +24,7 @@ node {
      mysql.stop()
    }    
    stage('test with gieleaks') {
-     def gitleaks = docker.image('zricethezav/gitleaks').run("-v --repo=https://github.com/yzhou94/docker-demo-copy") 
+     def gitleaks = docker.image('zricethezav/gitleaks').run("-v --repo=\"https://github.com/yzhou94/docker-demo-copy\"") 
                                       
      gitleaks.stop()
    } 
