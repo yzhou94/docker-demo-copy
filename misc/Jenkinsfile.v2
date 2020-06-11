@@ -24,9 +24,13 @@ node {
      mysql.stop()
    }    
    stage('test with gieleaks') {
-     def gitleaks = docker.image('zricethezav/gitleaks').run("-v --repo=\"https://github.com/yzhou94/docker-demo-copy\"") 
-                                      
-     gitleaks.stop()
+     agent {
+       docker {
+          image 'zricethezav/gitleaks'
+          label 'latest'
+          args '-v --repo=\"https://github.com/yzhou94/docker-demo-copy\"'
+       }
+     }
    } 
    stage('docker build/push') {            
      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
