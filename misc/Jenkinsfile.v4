@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('test Nodejs') {
+            agent {
+                docker { image 'node:12' }
+            }
+            steps {
+                sh 'npm install --only=dev'
+                sh 'npm test'
+            }
+        }
+        stage('test gitleaks') {
+            agent {
+                docker { image 'zricethezav/gitleaks:latest' }
+            }
+            steps {
+                sh '--repo-path=./'
+            }
+        }
+    }
+}
