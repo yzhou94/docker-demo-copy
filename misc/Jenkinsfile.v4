@@ -12,10 +12,12 @@ pipeline {
         }
         stage('test gitleaks') {
             agent {
-                docker { image 'zricethezav/gitleaks:latest' }
+                docker { image 'zricethezav/gitleaks:latest'
+                         args '-v ${PWD}:/path/'
+                }
             }
             steps {
-                sh '--repo-path=./'
+                sh '--repo-path=/path/'
             }
         }
     }
