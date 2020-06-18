@@ -14,6 +14,7 @@ pipeline {
             agent {
                 docker { image 'zricethezav/gitleaks:latest'
                          args '-v ${PWD}:/path/'
+                         reuseNode true
                 }
             }
             steps {
