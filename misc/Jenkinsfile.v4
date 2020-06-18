@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('test Nodejs') {
             agent {
-                docker { image 'node:12' }
+                docker { image 'node:12' 
+                         reuseNode true    
+                }
             }
             steps {
                 sh 'npm install --only=dev'
