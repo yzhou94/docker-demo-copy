@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('test gitleaks') {
             steps {
+                sh 'ls'
                 sh 'docker run -v ${PWD}:/path/ zricethezav/gitleaks:latest --repo-path=/path/'
             }
         }
