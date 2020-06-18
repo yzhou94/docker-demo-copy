@@ -25,8 +25,9 @@ node {
    }
    
    stage('test with gitleaks') {
-     def gitleaks = docker.image('zricethezav/gitleaks').run("-v $PWD=/path/")
-     gitleaks.inside{
+     def gitleaks = docker.image('zricethezav/gitleaks')
+     gitleaks.pull()
+     gitleaks.inside('-v ./=/path/'){
         sh '--repo-path=/path/'
      }
      
