@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+    stages {
+        stage('test gitleaks') {
+            agent {
+                docker { image 'zricethezav/gitleaks:latest'
+                         args '-v ${PWD}:/path/'
+                         reuseNode true
+                }
+            }
+            steps {
+                sh '--repo-path=/path/'
+            }
+        }
+    }
+}
