@@ -16,7 +16,7 @@ node {
    stage('test with gitleaks') {
      def gitleaks = docker.image('zricethezav/gitleaks')
      gitleaks.pull()
-     gitleaks.inside("-v \"/var/jenkins_home/workspace/nodejs docker pipeline:/path\""){
+     gitleaks.inside("-v \"/var/jenkins_home/workspace/nodejs docker pipeline\":/path"){
         sh '--repo-path=/path/'
      }
      
