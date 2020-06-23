@@ -6,7 +6,8 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test dependency') {
-     sh 'docker run -v $PWD:/scan -it licensefinder/license_finder'
+     sh 'docker run -v $PWD:/scan -it licensefinder/license_finder /bin/bash --login'
+     sh 'cd scan'
      sh 'license_finder'
    }
    stage('docker build/push') {
