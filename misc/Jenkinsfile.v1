@@ -21,7 +21,6 @@ pipeline {
             }
             steps {
                 sh 'ls'
-                sh 'cd path'
                 sh 'license_finder'
             }
         }
