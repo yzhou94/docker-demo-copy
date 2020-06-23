@@ -5,10 +5,12 @@ node {
      sh "git rev-parse --short HEAD > .git/commit-id"                        
      commit_id = readFile('.git/commit-id').trim()
    }
-   stage('test') {
-     nodejs(nodeJSInstallationName: 'nodejs') {
-       sh 'npm install --only=dev'
-       sh 'npm test'
+   stage('test dependency') {
+     def myTestContainer = docker.image('licensefinder/license_finder:latest')
+     myTestContainer.pull()
+      myTestContainer.inside("-v ${PWD}:/scanRepo") { // using linking, mysql will be available at host: mysql, port: 3306
+          sh 'cd /scanRepo' 
+          sh 'license_finder'                     
      }
    }
    stage('docker build/push') {
