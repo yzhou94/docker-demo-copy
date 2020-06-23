@@ -19,6 +19,7 @@ pipeline {
                 }
             }
             steps {
+                sh 'login'
                 sh 'ls'
                 sh 'license_finder'
             }
