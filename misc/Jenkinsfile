@@ -6,11 +6,8 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test dependency') {
-     def myTestContainer = docker.image('licensefinder/license_finder:latest')
-     myTestContainer.pull()
-      myTestContainer.inside("-v ${PWD}:/scanRepo") {
-          sh 'license_finder'                     
-     }
+     sh 'docker run -v $PWD:/scan -it licensefinder/license_finder'
+     sh 'license_finder'
    }
    stage('docker build/push') {
      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
