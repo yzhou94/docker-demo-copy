@@ -9,7 +9,6 @@ node {
      def myTestContainer = docker.image('licensefinder/license_finder:latest')
      myTestContainer.pull()
       myTestContainer.inside("-v ${PWD}:/scanRepo") {
-          sh 'cd scanRepo' 
           sh 'license_finder'                     
      }
    }
