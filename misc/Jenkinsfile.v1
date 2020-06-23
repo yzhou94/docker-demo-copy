@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+        stage('test Nodejs') {
+            agent {
+                docker { image 'node:12' 
+                         reuseNode true    
+                }
+            }
+            steps {
+                sh 'npm install --only=dev'
+                sh 'npm test'
+            }
+        }
+        stage('test license finder') {
+            agent {
+                docker { image 'licensefinder/license_finder:latest'
+                         args '-v ${PWD}:/path/'
+                         reuseNode true
+                }
+            }
+            steps {
+                sh 'ls'
+                sh 'cd path'
+                sh 'license_finder'
+            }
+        }
+    }
+}
