@@ -6,11 +6,11 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test dependency') {
-      sh 'docker run --rm --volume-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'ls; license_finder\' '
+      sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'ls; license_finder\' '
    }
    
    stage('test gitleaks') {
-      sh 'docker run --rm --volume-from=$HOSTNAME -w ${WORKSPACE} zricethezav/gitleaks:latest --repo-path=${WORKSPACE} '
+      sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} zricethezav/gitleaks:latest --repo-path=${WORKSPACE} '
    }
    
 }
