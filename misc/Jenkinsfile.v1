@@ -14,7 +14,7 @@ pipeline {
         }
         stage('test license finder') {
             steps {
-                sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'ls; license_finder permitted_licenses add MIT; license_finder permitted_licenses add ISC; license_finder -p\' '
+                sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'ls; license_finder permitted_licenses add MIT; license_finder permitted_licenses add ISC; license_finder permitted_licenses add \'New BSD\';license_finder -p\' '
             }
         }
     }
