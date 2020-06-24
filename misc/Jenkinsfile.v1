@@ -13,15 +13,8 @@ pipeline {
             }
         }
         stage('test license finder') {
-            agent {
-                docker { image 'licensefinder/license_finder:latest'
-                         reuseNode true
-                }
-            }
             steps {
-                sh 'login'
-                sh 'ls'
-                sh 'license_finder'
+                sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'ls; license_finder\' '
             }
         }
     }
