@@ -14,7 +14,7 @@ pipeline {
         }
         stage('test license finder') {
             steps {
-                sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'ls; license_finder\' '
+                sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'ls; license_finder -p\' '
             }
         }
     }
