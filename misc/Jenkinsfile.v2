@@ -18,7 +18,8 @@ node {
    }    
    
    stage('test with gitleaks3') {
-     docker.image("licensefinder/license_finder:latest").inside('--volumes-from=$HOSTNAME -w ${WORKSPACE}','/bin/bash -l'){
+     docker.image("licensefinder/license_finder:latest").inside('--volumes-from=$HOSTNAME -w ${WORKSPACE} --entrypoint /bin/bash'){
+         sh '--login'
          sh 'license_finder'
      }
    } 
