@@ -19,7 +19,7 @@ node {
    }  
    
    stage('test with licenseFinder') {
-     docker.image("licensefinder/license_finder:latest").withRun('-t --volumes-from=$HOSTNAME -w ${WORKSPACE} --entrypoint /bin/bash'){
+     docker.image("licensefinder/license_finder:latest").withRun('-u root --volumes-from=$HOSTNAME -w ${WORKSPACE} --entrypoint /bin/bash'){
          sh 'login'
          sh 'license_finder'
      }
