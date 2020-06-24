@@ -14,7 +14,7 @@ node {
    
    stage('test with gitleaks2') {
      
-     sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder:latest /bin/bash -lc \' ls ; add permitted_licenses add "New BSD"; license_finder \' '
+     sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder:latest /bin/bash -lc \' ls ; permitted_licenses add "New BSD"; license_finder \' '
    }    
    
    stage('test with gitleaks3') {
