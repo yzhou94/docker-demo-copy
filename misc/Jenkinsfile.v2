@@ -16,13 +16,14 @@ node {
    
    stage('test with gitleaks') {
      
-     docker.image("zricethezav/gitleaks:latest").withRun('--volumes-from=$HOSTNAME -w ${WORKSPACE}', '--repo-path=${WORKSPACE}') {
-     }
+     sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} zricethezav/gitleaks:latest --repo-path=${WORKSPACE} '
    }  
    
    stage('test with licenseFinder') {
      
-     docker.image("licensefinder/license_finder:latest").withRun('--volumes-from=$HOSTNAME -w ${WORKSPACE}', '/bin/bash -lc \'ls; license_finder\'') {
+     docker.image("licensefinder/license_finder:latest").withRun('--volumes-from=$HOSTNAME -w ${WORKSPACE}', '/bin/bash -lc') {
+        sh 'ls'
+        sh 'license_finder'
      }
    }                                     
    stage('docker build/push') {            
