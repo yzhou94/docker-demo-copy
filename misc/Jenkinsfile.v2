@@ -22,7 +22,7 @@ node {
    
    stage('test with licenseFinder') {
      
-     docker.image("licensefinder/license_finder:latest").withRun('--volumes-from=$HOSTNAME -w ${WORKSPACE}', '-lc \'ls; license_finder\'') {
+     docker.image("licensefinder/license_finder:latest").withRun('--volumes-from=$HOSTNAME -w ${WORKSPACE}', '/bin/bash -lc \'ls; license_finder\'') {
      }
    }                                     
    stage('docker build/push') {            
