@@ -7,7 +7,7 @@ node {
    } 
    
    stage('test with licensefinder') {
-     sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'echo $PWD; ls; license_finder\' '
+     sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'echo $PWD; ls; cd ..; ls; license_finder\' '
      
      docker.image("licensefinder/license_finder:latest").inside{
          sh 'echo ${PWD}'
