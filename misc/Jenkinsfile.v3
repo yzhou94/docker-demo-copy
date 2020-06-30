@@ -11,7 +11,7 @@ node {
      
      docker.image("licensefinder/license_finder:latest").run("-t -w ${WORKSPACE} --volumes-from=$HOSTNAME","/bin/bash -lc \'echo $HOSTNAME;echo $PWD; echo $WORKSPACE;license_finder \' ")
      
-     docker.image("licensefinder/license_finder:latest").inside("--entrypoint "/bin/bash -lc"){
+     docker.image("licensefinder/license_finder:latest").inside("--entrypoint \'/bin/bash -lc\' "){
          sh 'license_finder'
      }
    } 
