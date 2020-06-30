@@ -10,7 +10,7 @@ node {
      sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'echo $PWD; ls; cd ..; echo $PWD; ls; license_finder\' '
      
      docker.image("licensefinder/license_finder:latest").inside{
-         bash '-login'
+         sh '/bin/bash -login'
          sh 'echo ${PWD}'
          sh 'ls'
          sh 'cd ..'
