@@ -8,7 +8,8 @@ node {
    
    stage('test with licensefinder') {
      sh 'cat /etc/group'
-     sh 'docker run --rm -t -w ${WORKSPACE} --volumes-from=$HOSTNAME  licensefinder/license_finder /bin/bash -lc \'license_finder \' '
+     // with -u 1000:1000: license_finder, command not found
+     sh 'docker run --rm -u 1000:1000 -t -w ${WORKSPACE} --volumes-from=$HOSTNAME  licensefinder/license_finder /bin/bash -lc \'license_finder \' '
      
      docker.image("licensefinder/license_finder:latest").run("--rm -it -w ${WORKSPACE} --volumes-from=$HOSTNAME --name LicenseFinder","/bin/bash -lc \'license_finder \' ")
      sh 'docker logs "$(docker ps -aqf "name=LicenseFinder")"  '
