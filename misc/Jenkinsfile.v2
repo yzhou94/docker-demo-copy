@@ -12,6 +12,7 @@ node {
      sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'echo $HOSTNAME; echo $PWD; ls; cd ..; echo $PWD; ls; echo $WORKSPACE;license_finder \' '
      
      docker.image("licensefinder/license_finder:latest").inside{
+         sh 'echo $HOSTNAME'
          sh '/bin/bash -lc \' echo $HOSTNAME; echo $PWD; ls; cd ..; echo $PWD; ls; echo $WORKSPACE;license_finder \' '
      }
    } 
