@@ -14,7 +14,8 @@ node {
      
      
      
-     docker.image("licensefinder/license_finder:latest").inside("--entrypoint \'/bin/bash\' "){
+     docker.image("licensefinder/license_finder:latest").inside(){
+         sh '/bin/bash -login'
          sh 'license_finder'
      }
    } 
