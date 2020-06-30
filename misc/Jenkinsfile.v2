@@ -9,7 +9,7 @@ node {
    stage('test with licensefinder') {
     
      
-     docker.image("licensefinder/license_finder:latest").inside(-v ${WORKSPACE}:/scan){
+     docker.image("licensefinder/license_finder:latest").inside('-v ${WORKSPACE}:/scan'){
          sh '/bin/bash -lc \' ls; license_finder -p  \' '
      }
    } 
