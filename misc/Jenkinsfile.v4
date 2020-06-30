@@ -1,18 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('test Nodejs') {
-            agent {
-                docker { 
-                         reuseNode true 
-                         image 'node:12'
-                }
-            }
-            steps {
-                sh 'npm install --only=dev'
-                sh 'npm test'
-            }
-        }
+        
         stage('test gitleaks') {
             agent {
                 docker { 
@@ -22,7 +11,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'license_finder'
+                sh 'license_finder -p'
             }
             
         }
