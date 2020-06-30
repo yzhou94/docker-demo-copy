@@ -9,10 +9,10 @@ node {
    stage('test with licensefinder') {
      sh 'echo ${WORKSPACE}'
      sh 'echo $HOSTNAME'
-     sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'echo $PWD; ls; cd ..; echo $PWD; ls; echo $WORKSPACE;license_finder \' '
+     sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'echo $HOSTNAME; echo $PWD; ls; cd ..; echo $PWD; ls; echo $WORKSPACE;license_finder \' '
      
      docker.image("licensefinder/license_finder:latest").inside{
-         sh '/bin/bash -lc \' echo $PWD; ls; cd ..; echo $PWD; ls; echo $WORKSPACE;license_finder \' '
+         sh '/bin/bash -lc \' echo $HOSTNAME; echo $PWD; ls; cd ..; echo $PWD; ls; echo $WORKSPACE;license_finder \' '
      }
    } 
    
