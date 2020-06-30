@@ -16,7 +16,7 @@ node {
      
      
      
-     docker.image("licensefinder/license_finder:latest").inside('-uts root'){
+     docker.image("licensefinder/license_finder:latest").inside('-u 0:0'){
          sh 'echo $HOSTNAME'
          sh 'cat /etc/group'
          sh '/bin/bash -lc \'license_finder\''
