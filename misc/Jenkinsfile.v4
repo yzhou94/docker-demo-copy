@@ -1,20 +1,26 @@
 pipeline {
-    agent {
+    agent any
+   
+    stages {
+        stage('Info Host'){
+            steps{
+                sh 'echo $HOSTNAME'
+                sh 'cat /etc/group'
+            }
+        }
+        
+        stage('test licensefinder') {
+             agent {
                 docker { 
                         image 'licensefinder/license_finder:latest'                        
                 }
             }
-    stages {
-        
-        stage('test licensefinder') {
-            
             steps {
-                sh 'ls'
-                sh 'echo $PWD'
-                sh 'cd ..'
-                sh 'ls'
-                sh '/bin/bash -login'
-                sh 'license_finder -p'
+                //find out where we are
+                sh 'echo $HOSTNAME'
+                sh 'cat /etc/group'
+                //run license_finder
+                sh '/bin/bash -lc \'license_finder\' '
             }
             
         }
