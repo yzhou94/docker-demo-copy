@@ -12,7 +12,8 @@ pipeline {
         stage('test licensefinder') {
              agent {
                 docker { 
-                        image 'licensefinder/license_finder:latest'                        
+                        image 'licensefinder/license_finder:latest'
+                        args '-u 0:0'
                 }
             }
             steps {
