@@ -1,13 +1,23 @@
 pipeline {
     agent any
     stages {
+        stage('test demo') {
+            steps {
+                sh 'echo $PWD'
+                sh 'cd ..'
+                sh 'ls'
+                sh '/bin/bash -login'
+                sh 'license_finder -p'
+            }
+            
+        }
         
-        stage('test gitleaks') {
+        
+        stage('test licensefinder') {
             agent {
                 docker { 
                         reuseNode true   
                         image 'licensefinder/license_finder:latest' 
-                        args '-v ${PWD}:/scan'
                           
                 }
             }
