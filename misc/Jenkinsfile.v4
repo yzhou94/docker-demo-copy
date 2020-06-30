@@ -11,8 +11,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'cd ..'
-                sh 'ls'
+                sh '/bin/bash -login'
                 sh 'license_finder -p'
             }
             
