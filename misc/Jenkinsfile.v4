@@ -11,7 +11,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'ls'
+                sh 'echo $PWD'
                 sh 'cd ..'
                 sh 'ls'
                 sh '/bin/bash -login'
