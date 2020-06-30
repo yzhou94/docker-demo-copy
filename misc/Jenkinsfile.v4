@@ -7,6 +7,7 @@ pipeline {
                 docker { 
                         reuseNode true   
                         image 'licensefinder/license_finder:latest' 
+                        args '-v $PWD:/scan"
                           
                 }
             }
