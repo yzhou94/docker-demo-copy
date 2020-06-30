@@ -8,7 +8,7 @@ node {
    
    stage('test with licensefinder') {
      docker.image("licensefinder/license_finder:latest").inside('-v ${PWD}:/scan'){
-         sh 'echo $PWD'
+         sh 'echo ${PWD}'
          sh 'ls'
          sh 'cd ..'
          sh 'ls'
