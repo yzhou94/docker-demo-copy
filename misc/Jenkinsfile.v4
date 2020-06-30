@@ -13,8 +13,15 @@ pipeline {
             }
         }
         stage('test gitleaks') {
-            steps{
-                sh 'docker run --rm --volumes-from=$HOSTNAME -w ${WORKSPACE} licensefinder/license_finder /bin/bash -lc \'ls; license_finder\' '
+            agent {
+                docker { 
+                        reuseNode true   
+                        image 'licensefinder/license_finder:latest' 
+                          
+                }
+            }
+            steps {
+                sh 'license_finder'
             }
             
         }
