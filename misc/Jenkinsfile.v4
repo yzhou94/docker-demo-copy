@@ -21,7 +21,7 @@ pipeline {
                 sh 'echo $HOSTNAME'
                 sh 'cat /etc/group'
                 //run license_finder
-                sh '/bin/bash -lc \'license_finder\' '
+                sh '/bin/bash -lc \'license_finder -p\' '
             }
             
         }
