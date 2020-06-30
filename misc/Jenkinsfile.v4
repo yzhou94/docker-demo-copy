@@ -3,8 +3,9 @@ pipeline {
     stages {
         stage('test Nodejs') {
             agent {
-                docker { image 'node:12' 
-                         reuseNode true    
+                docker { 
+                         reuseNode true 
+                         image 'node:12'
                 }
             }
             steps {
