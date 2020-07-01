@@ -1,11 +1,28 @@
 pipeline {
     agent any
+   
     stages {
-        stage('test gitleaks') {
-            steps {
-                sh 'ls'
-                sh 'docker run -v ${PWD}:/path/ zricethezav/gitleaks:latest --repo-path=/path/'
+        stage('Info Host'){
+            steps{
+                sh 'echo $HOSTNAME'
+                sh 'cat /etc/group'
             }
+        }
+        
+        stage('test gitleaks') {
+             agent {
+                docker { 
+                        image 'zricethezav/gitleaks:latest'
+                        args '--entrypoint /bin/bash'
+                }
+            }
+            steps {
+                //find out where we are
+                sh 'echo $HOSTNAME'
+                //run gitleaks
+                sh '/bin/bash -lc \'gitleaks --repo-path=${PWD}\' '
+            }
+            
         }
     }
 }
