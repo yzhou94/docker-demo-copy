@@ -13,7 +13,7 @@ pipeline {
              agent {
                 docker { 
                         image 'zricethezav/gitleaks:latest'
-                        args '--entrypoint=\'/bin/bash\' '
+                        args '--entrypoint='
                 }
             }
             steps {
