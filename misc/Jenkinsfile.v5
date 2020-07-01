@@ -20,7 +20,7 @@ pipeline {
                 //find out where we are
                 sh 'echo $HOSTNAME'
                 //run gitleaks
-                sh '/bin/bash -lc \'gitleaks --repo-path=${PWD}\' '
+                sh '/bin/bash -lc \'ls; gitleaks --repo-path=${PWD}\' '
             }
             
         }
